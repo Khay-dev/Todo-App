@@ -1,11 +1,16 @@
 
-const Todo = ({ todos }) => {
+const Todo = ({ todos, removeTodo, editTodo }) => {
     return (
         <ul className="todo">
-            <li>
-                <span>{todos.text}</span>
-                <button>delete</button>
-            </li>
+            {todos.map((todo) => (
+                <li key={todo.id}>
+                    <input
+                        type="checkbox"
+                    />
+                    <span>{todo.text}</span>
+                    <button onClick={() => removeTodo(todo.id)} >delete</button>
+                    <button onClick={() => editTodo(todo.id)}>edit</button>
+                </li>))}
         </ul>
     );
 }

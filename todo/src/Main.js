@@ -1,16 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
-const MainTodo = ({ addTodo }) => {
-
-    const [value, setValue] = useState("");
+const MainTodo = ({ value: defaultValue, onSubmit }) => {
+    const [value, setValue] = useState(defaultValue);
 
     const getSubmit = (e) => {
         e.preventDefault();
         if (!value) return;
-        addTodo(value);
+        onSubmit(value);
         setValue("");
     };
+
+    useEffect(() => {
+        setValue(defaultValue);
+    }, [defaultValue])
 
     return (
         <div className="main-todo">
